@@ -1,0 +1,56 @@
+group 'me.masterkaiser.template'
+version '1.0.0-SNAPSHOT'
+
+repositories {
+    mavenCentral()
+    maven { url "https://storehouse.okaeri.eu/repository/maven-public" }
+    maven {
+        url = 'https://hub.spigotmc.org/nexus/content/repositories/snapshots/'
+        content {
+            includeGroup 'org.bukkit'
+            includeGroup 'org.spigotmc'
+        }
+    }
+    maven {
+        name "masterRepositoryReleases"
+        url "https://repo.masterkaiser.me/snapshots"
+    }
+    maven { url "https://nexus.iridiumdevelopment.net/repository/maven-releases/" }
+}
+
+dependencies {
+    // #spigot
+    compileOnly 'org.spigotmc:spigot-api:1.16.5-R0.1-SNAPSHOT'
+
+    // #spring-context
+    compileOnly 'org.springframework:spring-context:5.3.10'
+
+    // #okaeriConfig
+    implementation "eu.okaeri:okaeri-configs-yaml-bukkit:5.0.0-beta.5"
+    implementation 'eu.okaeri:okaeri-configs-json-gson:5.0.0-beta.5'
+    implementation 'eu.okaeri:okaeri-configs-json-simple:5.0.0-beta.5'
+
+    // #okaeriPersistence
+    implementation 'eu.okaeri:okaeri-persistence-core:2.0.0-beta.1'
+    implementation 'eu.okaeri:okaeri-persistence-flat:2.0.0-beta.1'
+    implementation 'eu.okaeri:okaeri-persistence-jdbc:2.0.0-beta.1'
+
+    // #okaeriTasker
+    implementation 'eu.okaeri:okaeri-tasker-bukkit:2.1.0-beta.3'
+
+    // #master-commands
+    implementation 'me.masterkaiser.command:core:1.0-SNAPSHOT'
+    implementation 'me.masterkaiser.command:bukkit:1.0-SNAPSHOT'
+    implementation 'me.masterkaiser.command:serdes:1.0-SNAPSHOT'
+
+    // #framework
+    implementation "me.masterkaiser.framework:core:1.0.1-SNAPSHOT"
+
+    // #IridiumColorAPI
+    compileOnly 'com.iridium:IridiumColorAPI:1.0.6'
+}
+
+shadowJar {
+    archiveFileName = "${rootProject.name}-${project.name}-${project.version}.jar"
+    minimize()
+}

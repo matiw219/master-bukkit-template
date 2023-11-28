@@ -1,0 +1,8 @@
+name: master-bukkit-template
+version: 1.0.0-SNAPSHOT
+api-version: 1.16
+author: masterkaiser
+main: me.masterkaiser.template.TemplatePlugin
+website: 'www.masterkaiser.me'
+libraries:
+  - org.springframework:spring-context:5.3.10

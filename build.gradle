@@ -1,0 +1,44 @@
+plugins {
+    id 'java'
+    id "com.github.johnrengelman.shadow" version "8.1.1"
+}
+
+allprojects {
+    group 'me.masterkaiser.template'
+
+    apply plugin: 'java-library'
+
+    java {
+        withSourcesJar()
+    }
+
+    repositories {
+        mavenCentral()
+    }
+}
+
+subprojects {
+    dependencies {
+
+        // #lombok
+        compileOnly 'org.projectlombok:lombok:1.18.28'
+        annotationProcessor 'org.projectlombok:lombok:1.18.28'
+
+        testCompileOnly 'org.projectlombok:lombok:1.18.28'
+        testAnnotationProcessor 'org.projectlombok:lombok:1.18.28'
+
+        // #jetbrains
+        compileOnly 'org.jetbrains:annotations:24.0.0'
+    }
+
+    compileJava.options.encoding = 'UTF-8'
+
+    tasks.withType(JavaCompile) {
+        options.encoding = 'UTF-8'
+    }
+
+    apply plugin: 'com.github.johnrengelman.shadow'
+
+    sourceCompatibility = JavaVersion.VERSION_16
+    targetCompatibility = JavaVersion.VERSION_16
+}
